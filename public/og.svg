@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="oklch(98.5% 0.004 240)"/>
+  <circle cx="925" cy="120" r="320" fill="oklch(82% 0.10 215 / .14)"/>
+  <circle cx="990" cy="520" r="260" fill="oklch(72% 0.11 295 / .12)"/>
+  <g fill="oklch(21% 0.016 250)">
+    <text x="88" y="185" font-family="Arial, sans-serif" font-size="72" font-weight="700">glassrail</text>
+    <text x="90" y="270" font-family="Arial, sans-serif" font-size="34">Agentic workflows you can see through.</text>
+    <text x="90" y="330" font-family="Arial, sans-serif" font-size="24" fill="oklch(45% 0.020 245)">Validated DAG plans, fresh context per node, deterministic routing, eval-gated releases.</text>
+  </g>
+  <g transform="translate(760 210)">
+    <rect x="0" y="0" width="240" height="86" rx="24" fill="oklch(100% 0 0 / .62)" stroke="oklch(82% 0.10 215 / .55)"/>
+    <rect x="-120" y="150" width="240" height="86" rx="24" fill="oklch(100% 0 0 / .62)" stroke="oklch(72% 0.10 175 / .65)"/>
+    <rect x="120" y="150" width="240" height="86" rx="24" fill="oklch(100% 0 0 / .62)" stroke="oklch(72% 0.10 175 / .65)"/>
+    <path d="M80 86L0 150M160 86L240 150" fill="none" stroke="oklch(75% 0.11 255 / .7)" stroke-width="3"/>
+  </g>
+</svg>
