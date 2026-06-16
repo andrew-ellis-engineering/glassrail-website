@@ -29,7 +29,7 @@ everything else is solid, quiet, near-white. The dazzle is choreography on the
 engine's artifacts, never decoration on the page. This is the deliberate,
 named exception to the design skill's "no decorative glassmorphism" ban: glass
 here is the identity, and it is constrained to surfaces where transparency
-*means* something.
+_means_ something.
 
 ## For the implementing agent: workflow and precedence
 
@@ -39,7 +39,7 @@ here is the identity, and it is constrained to surfaces where transparency
    (or run with `website/` as cwd) so it loads the PRODUCT/DESIGN context.
    Use its `audit` and `polish` passes before calling the site done.
 3. **Precedence on conflict:** this spec and `website/DESIGN.md` win over the
-   skill's general taste rules; the skill's *absolute bans* still hold and
+   skill's general taste rules; the skill's _absolute bans_ still hold and
    this design already complies (no gradient text, no side-stripe borders, no
    hero-metric template, no identical card grids, no modals, no em dashes in
    copy, OKLCH everywhere, no pure `#fff`/`#000`).
@@ -106,7 +106,7 @@ the product's real vocabulary.
    beneath it, in topological order, using the breach recipe (DESIGN.md):
    each rises as a smeared, milky, refracted version of itself, breaks the
    plane with a meniscus ring and corner droplets, then drains crisp, its
-   border and text sharpening behind the drain front. Edges (the *rails*)
+   border and text sharpening behind the drain front. Edges (the _rails_)
    draw on between them with a faint light running their length. Ticker:
    `plan_ready`. Then a single clean white ring pulse crosses the whole graph
    with the microcopy `validated · acyclic`.
@@ -138,18 +138,33 @@ version can be generated from an actual captured run:
 
 ```ts
 interface ReplayPlan {
-  nodes: { id: number; type: "tool" | "decision" | "synthesis" | "think"
-           | "summary" | "result"; label: string; layer: number;
-           deps: number[] }[];
+  nodes: {
+    id: number;
+    type: "tool" | "decision" | "synthesis" | "think" | "summary" | "result";
+    label: string;
+    layer: number;
+    deps: number[];
+  }[];
 }
 interface ReplayEvent {
-  t: number;                       // ms offset in the cycle
-  e: "planning_started" | "plan_ready" | "node_started" | "node_finished"
-   | "branch_decided" | "task_completed";
-  node?: number; branch?: string; status?: "completed" | "skipped";
-  text?: string;                   // streamed snippet / final output
+  t: number; // ms offset in the cycle
+  e:
+    | "planning_started"
+    | "plan_ready"
+    | "node_started"
+    | "node_finished"
+    | "branch_decided"
+    | "task_completed";
+  node?: number;
+  branch?: string;
+  status?: "completed" | "skipped";
+  text?: string; // streamed snippet / final output
 }
-interface Replay { task: string; plan: ReplayPlan; events: ReplayEvent[] }
+interface Replay {
+  task: string;
+  plan: ReplayPlan;
+  events: ReplayEvent[];
+}
 ```
 
 `crystallizer.ts` builds one GSAP timeline per cycle from a `Replay`. The
@@ -188,7 +203,7 @@ Asymmetric layout throughout: no centered-stack hero, no identical card rows.
 1. **Nav.** Wordmark `glassrail` (Switzer, lowercase, with a 2px iridescent
    rail underline that draws on load, the one logo gesture), links: GitHub ·
    Docs · Install. Transparent at top; becomes a veil-glass bar after 80 px
-   scroll (nav is chrome, but after scroll it floats *over* engine artifacts,
+   scroll (nav is chrome, but after scroll it floats _over_ engine artifacts,
    which justifies the material).
 2. **Hero.** Left 40%: H1 "Agentic workflows you can see through." (display,
    −2.5% tracking), category line "Reliability infrastructure for agentic
@@ -198,25 +213,25 @@ Asymmetric layout throughout: no centered-stack hero, no identical card rows.
    viewport edge: the Crystallizer.
 3. **Why plans, not loops.** Two-column contrast on `--paper-2`: left, an
    opaque-loop vignette — a small murky frosted tangle where text is
-   illegible *because* the pane is fogged (the one place frost means
+   illegible _because_ the pane is fogged (the one place frost means
    confusion); right, the same task as a crisp three-node plan. Five
    failure-mode lines and five bet lines from product-website.md, set as two
    plain lists, no cards.
 4. **Core tenets.** Six tenets in a varied-span grid (2-1 / 1-2 rhythm, not
-   six equal cards), each a glass pane *because each demo is an engine
-   artifact*, each with a 2–3 sentence explanation and a ≤ 2 s in-view
+   six equal cards), each a glass pane _because each demo is an engine
+   artifact_, each with a 2–3 sentence explanation and a ≤ 2 s in-view
    micro-demo, static final frame under reduced motion:
-   - *Plan as document* — a plan JSON crossfades into its rendered graph.
-   - *Fresh context per node* — one node's two declared inputs illuminate;
+   - _Plan as document_ — a plan JSON crossfades into its rendered graph.
+   - _Fresh context per node_ — one node's two declared inputs illuminate;
      every other upstream pane stays frosted.
-   - *Validated before it runs* — a cycle edge attempts to form and is
+   - _Validated before it runs_ — a cycle edge attempts to form and is
      declined with a clean snap-back and `cycle rejected` chip.
-   - *Deterministic tier routing* — a pulse drops through four tier shelves,
+   - _Deterministic tier routing_ — a pulse drops through four tier shelves,
      settling at the configured one; a second pulse falls through an
      unavailable tier.
-   - *Branching is explicit* — a three-node decision demo, untaken side
+   - _Branching is explicit_ — a three-node decision demo, untaken side
      ghosting.
-   - *Eval-gated releases* — twin bars filling: pass@k (capability) vs pass^k
+   - _Eval-gated releases_ — twin bars filling: pass@k (capability) vs pass^k
      (reliability), with the one-line distinction.
 5. **The audit log replays.** Full-width glass terminal (HTML pane, true
    backdrop blur) replaying `glassrail run --json` with a real envelope
@@ -291,64 +306,99 @@ pill, not a colored button.
 ## Appendix: the breach (two-layer drain) markup + timeline sketch
 
 Each node is two stacked copies of the same content. The liquid copy sits on
-top, displaced and milky, masked by a vertical luminance gradient; draining
-means animating the gradient front while the filter calms. The crisp copy
-needs no filter at any point, which is what keeps text razor-sharp the
-instant the front passes it.
+top, displaced and milky, masked by a radial luminance gradient stretched to
+an ellipse matched to the node's proportions; draining means growing the
+gradient front from the center outward while the filter calms (the slab's
+center breaches first, the film retreats to the rim, corners clear last —
+which is when the corner lobes detach). The crisp copy needs no filter at
+any point, which is what keeps text razor-sharp the instant the front
+passes it.
 
 ```html
 <g class="node">
-  <g class="crisp"><rect …/><text …/>…</g>
+  <g class="crisp"><rect … /><text … />…</g>
   <g class="liquid" mask="url(#drain-7)">
     <g filter="url(#lq-7)">
-      <rect …/><text …/>…                 <!-- identical content -->
-      <rect class="milk" fill-opacity="0.48"/>
+      <rect … /><text … />…
+      <!-- identical content -->
+      <rect class="milk" fill-opacity="0.48" />
     </g>
   </g>
-  <g class="film-edge" clip-path="url(#nodeclip-7)">…2px highlight…</g>
+  <ellipse class="film-ring" cx="W/2" cy="H/2" rx="0" ry="0" clip-path="url(#nodeclip-7)" />
+  <!-- 2px white stroke -->
 </g>
 
 <filter id="lq-7" x="-25%" y="-25%" width="150%" height="150%">
-  <feTurbulence type="fractalNoise" baseFrequency="0.016 0.04"
-                numOctaves="2" seed="7" result="n"/>
-  <feDisplacementMap in="SourceGraphic" in2="n" scale="34"
-                     xChannelSelector="R" yChannelSelector="G"/>
-  <feGaussianBlur stdDeviation="3"/>
+  <feTurbulence type="fractalNoise" baseFrequency="0.016 0.04" numOctaves="2" seed="7" result="n" />
+  <feDisplacementMap
+    in="SourceGraphic"
+    in2="n"
+    scale="34"
+    xChannelSelector="R"
+    yChannelSelector="G"
+  />
+  <feGaussianBlur stdDeviation="3" />
 </filter>
-<linearGradient id="drain-grad-7" gradientUnits="userSpaceOnUse"
-                x1="0" y1="NODE_TOP" x2="0" y2="NODE_BOTTOM">
-  <stop offset="0" stop-color="#000"/>   <!-- above front: drained -->
-  <stop offset="0" stop-color="#fff"/>   <!-- below front: liquid -->
-</linearGradient>
-<mask id="drain-7"><rect fill="url(#drain-grad-7)" …/></mask>
+<radialGradient
+  id="drain-grad-7"
+  gradientUnits="userSpaceOnUse"
+  cx="0"
+  cy="0"
+  r="1"
+  gradientTransform="translate(W/2 H/2) scale(W/2+10 H/2+10)"
+>
+  <stop offset="0" stop-color="#000" />
+  <!-- inside front: drained -->
+  <stop offset="0" stop-color="#fff" />
+  <!-- outside front: liquid -->
+</radialGradient>
+<mask id="drain-7"><rect fill="url(#drain-grad-7)" … /></mask>
 ```
+
+All per-node defs (gradient, mask, clip) use the node's local coordinate
+space — the group is translated to its position, so absolute coordinates in
+a `userSpaceOnUse` mask land at double the offset and strand the mask.
 
 ```ts
 function breach(node: NodeRefs) {
-  const f = { v: -0.12 };                       // drain-front position
+  const f = { v: -0.12 }; // drained-ellipse radius
+  // The corner's distance in gradient units depends on aspect ratio, so the
+  // front's end value is derived per node; a fixed end strands corner slivers
+  // on wide (mobile) nodes.
+  const fEnd = Math.hypot(node.w / 2 / (node.w / 2 + 10), node.h / 2 / (node.h / 2 + 10)) + 0.08;
   const setFront = () => {
     node.stopBlack.setAttribute("offset", String(clamp(f.v - 0.07, 0, 1)));
     node.stopWhite.setAttribute("offset", String(clamp(f.v + 0.07, 0, 1)));
-    node.filmEdge.setAttribute("transform", `translate(0 ${node.h * clamp(f.v, 0, 1)})`);
+    const r = Math.max(0, f.v);
+    node.filmRing.setAttribute("rx", String(r * (node.w / 2 + 10)));
+    node.filmRing.setAttribute("ry", String(r * (node.h / 2 + 10)));
   };
-  return gsap.timeline({ onComplete: () => node.liquid.remove() })
-    // approach: rise toward the viewer, almost readable
-    .fromTo(node.g, { opacity: 0, scale: 0.88 },
-                    { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, 0)
-    .to(node.disp, { attr: { scale: 22 }, duration: 0.6 }, 0)
-    // breach: meniscus rim inflates + thins, corner lobes detach, ripple
-    .add(meniscusRing(node), 0.55)
-    .add(cornerLobes(node), 0.62)
-    .add(rippleRing(node), 0.68)
-    // drain: the front reveals the crisp layer; filter calms in lockstep
-    .to(f, { v: 1.12, duration: 0.62, ease: "power2.inOut", onUpdate: setFront }, 0.7)
-    .to(node.disp, { attr: { scale: 0 }, duration: 0.62 }, 0.7)
-    .to(node.blur, { attr: { stdDeviation: 0 }, duration: 0.62 }, 0.7)
-    .to(node.milk, { attr: { "fill-opacity": 0 }, duration: 0.62 }, 0.7)
-    .add(bottomBead(node), 1.12)
-    // settle
-    .add(specularSweep(node), 1.34)
-    .add(irisRimFlash(node), 1.4);
+  return (
+    gsap
+      .timeline({ onComplete: () => node.liquid.remove() })
+      // approach: rise toward the viewer, almost readable
+      .fromTo(
+        node.g,
+        { opacity: 0, scale: 0.88 },
+        { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" },
+        0
+      )
+      .to(node.disp, { attr: { scale: 22 }, duration: 0.6 }, 0)
+      // breach: meniscus rim inflates + thins, corner lobes form, ripple
+      .add(meniscusRing(node), 0.55)
+      .add(cornerLobes(node), 0.62) // swell mid-drain, detach as corners clear
+      .add(rippleRing(node), 0.68)
+      // drain, middle out: the front reveals the crisp layer center-first;
+      // filter calms in lockstep; corners clear last
+      .to(f, { v: fEnd, duration: 0.62, ease: "power2.inOut", onUpdate: setFront }, 0.7)
+      .to(node.disp, { attr: { scale: 0 }, duration: 0.62 }, 0.7)
+      .to(node.blur, { attr: { stdDeviation: 0 }, duration: 0.62 }, 0.7)
+      .to(node.milk, { attr: { "fill-opacity": 0 }, duration: 0.62 }, 0.7)
+      .add(bottomBead(node), 1.12)
+      // settle
+      .add(specularSweep(node), 1.34)
+      .add(irisRimFlash(node), 1.4)
+  );
 }
 ```
 

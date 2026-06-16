@@ -8,15 +8,54 @@
       name="description"
       content="Glassrail turns agentic work into validated DAG plans with fresh context, deterministic routing, telemetry, approval points, and eval-gated releases."
     />
-    <meta name="theme-color" content="oklch(98.5% 0.004 240)" />
+    <meta name="theme-color" content="#f8fafc" />
     <meta property="og:title" content="Glassrail" />
     <meta
       property="og:description"
       content="Agentic workflows you can see through. Validated DAG plans, fresh context per node, deterministic routing, eval-gated releases."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="./og.svg" />
+    <meta
+      property="og:image"
+      content="https://andrew-ellis-engineering.github.io/glassrail.github.io/og.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://andrew-ellis-engineering.github.io/glassrail.github.io/og.png"
+    />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="./fonts/switzer-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="./fonts/commit-mono.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      /* Self-hosted subsets; document-relative URLs survive the Pages base path. */
+      @font-face {
+        font-family: "Switzer";
+        src: url("./fonts/switzer-var.woff2") format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Commit Mono";
+        src: url("./fonts/commit-mono.woff2") format("woff2");
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Commit Mono";
+        src: url("./fonts/commit-mono-700.woff2") format("woff2");
+        font-weight: 700;
+        font-display: swap;
+      }
+      /* Fallback carries Switzer's vertical metrics so swap cannot shift layout. */
+      @font-face {
+        font-family: "Switzer Fallback";
+        src: local("Helvetica Neue"), local("Arial");
+        ascent-override: 98%;
+        descent-override: 25%;
+        line-gap-override: 9%;
+      }
+    </style>
   </head>
   <body>
     <div class="field-noise" aria-hidden="true"></div>
@@ -37,7 +76,7 @@
         <div class="section-index" aria-hidden="true">01</div>
         <div class="hero-copy reveal">
           <p class="eyebrow">Reliability infrastructure for agentic workflows</p>
-          <h1 id="hero-title">Agentic workflows you can see through.</h1>
+          <h1 id="hero-title">Agentic workflows you can see&nbsp;through.</h1>
           <p class="lead">
             Glassrail turns a task into a validated DAG of typed nodes. Each node runs with fresh
             declared context, model calls route through deterministic tiers, and the run leaves
@@ -58,9 +97,9 @@
             </a>
           </div>
           <a class="eval-badge" href="#evidence" aria-label="Jump to release gate evidence">
-            <span>Release gate</span>
+            <span>glassrail-openrouter</span>
             <strong>20/23 full-pass</strong>
-            <span>0 all-fail · Jun 11, 2026</span>
+            <span>0 all-fail · 3 trials · Jun 11, 2026</span>
           </a>
         </div>
 
@@ -78,7 +117,7 @@
               <p>Replay of a recorded run, motion paused until JavaScript loads.</p>
             </div>
           </div>
-          <p class="scene-caption mono">replay of a recorded run · sequential execution</p>
+          <p class="scene-caption mono">recorded replay · sequential execution</p>
         </div>
       </section>
 
@@ -89,7 +128,7 @@
           <h2 id="why-title">Opaque loops are hard to operate.</h2>
         </div>
         <div class="loop-contrast">
-          <div class="murky-artifact pane reveal" aria-label="Opaque loop vignette">
+          <div class="murky-artifact pane pane--still reveal" aria-label="Opaque loop vignette">
             <div class="murky-line"></div>
             <div class="murky-line short"></div>
             <div class="murky-knot"></div>
@@ -105,7 +144,10 @@
               <li>How the final answer connects back to the work.</li>
             </ul>
           </div>
-          <div class="crisp-artifact pane iris reveal" aria-label="Validated DAG vignette">
+          <div
+            class="crisp-artifact pane pane--still iris reveal"
+            aria-label="Validated DAG vignette"
+          >
             <div class="mini-node">plan</div>
             <div class="mini-rail"></div>
             <div class="mini-row">
@@ -132,10 +174,10 @@
         <div class="section-index" aria-hidden="true">03</div>
         <div class="section-heading reveal">
           <p class="eyebrow">Core tenets</p>
-          <h2 id="tenets-title">The rails are concrete.</h2>
+          <h2 id="tenets-title">The rails are load-bearing.</h2>
         </div>
         <div class="tenet-grid">
-          <article class="tenet pane reveal span-wide">
+          <article class="tenet pane pane--still reveal span-wide">
             <span class="chip">plan_ready</span>
             <h3>Plan as document</h3>
             <p>
@@ -145,8 +187,11 @@
             <pre class="mono code-slice">
 {"nodes":[{"id":1,"type":"tool"},{"id":2,"type":"synthesis"}]}</pre
             >
+            <div class="plan-demo" aria-hidden="true">
+              <span>plan</span><span>validate</span><span>result</span>
+            </div>
           </article>
-          <article class="tenet pane reveal">
+          <article class="tenet pane pane--still reveal">
             <span class="chip">context_needed</span>
             <h3>Fresh context per node</h3>
             <p>
@@ -154,19 +199,20 @@
               execution rule instead of a prompt wish.
             </p>
             <div class="context-demo" aria-hidden="true">
-              <span></span><span class="lit"></span><span></span><span class="lit"></span>
+              <span>prior</span><span class="lit">input</span><span>noise</span
+              ><span class="lit">tool</span>
             </div>
           </article>
-          <article class="tenet pane reveal">
+          <article class="tenet pane pane--still reveal">
             <span class="chip warn">cycle rejected</span>
             <h3>Validated before it runs</h3>
             <p>
               The validator enforces DAG invariants, topological order, nesting limits, and
               node-shape rules before any tool or model node executes.
             </p>
-            <div class="cycle-demo" aria-hidden="true"></div>
+            <div class="cycle-demo" aria-hidden="true"><span>A</span><span>B</span><i></i></div>
           </article>
-          <article class="tenet pane reveal span-tall">
+          <article class="tenet pane pane--still reveal span-tall">
             <span class="chip">tier_router</span>
             <h3>Deterministic routing</h3>
             <p>
@@ -180,7 +226,7 @@
               <li>tier 3 · fallback</li>
             </ol>
           </article>
-          <article class="tenet pane reveal">
+          <article class="tenet pane pane--still reveal">
             <span class="chip">branch_decided</span>
             <h3>Branching is explicit</h3>
             <p>
@@ -188,10 +234,11 @@
               the audit log still explains what did not run.
             </p>
             <div class="branch-demo" aria-hidden="true">
-              <span></span><span class="taken"></span><span class="skipped"></span>
+              <span>decision</span><span class="taken">taken</span
+              ><span class="skipped">skipped</span>
             </div>
           </article>
-          <article class="tenet pane reveal span-wide">
+          <article class="tenet pane pane--still reveal span-wide">
             <span class="chip">eval-gated</span>
             <h3>Releases earn their way out</h3>
             <p>
@@ -199,8 +246,8 @@
               misses become named ratchets, not buried caveats.
             </p>
             <div class="bar-pair" aria-hidden="true">
-              <span style="--w: 100%"></span>
-              <span style="--w: 87%"></span>
+              <span style="--w: 100%" data-label="pass@k 23/23"></span>
+              <span style="--w: 87%" data-label="full-pass 20/23"></span>
             </div>
           </article>
         </div>
@@ -220,7 +267,7 @@
           <div class="terminal-title mono">
             glassrail run --json "compare queues for retry-safe jobs"
           </div>
-          <pre class="mono"><code>{
+          <pre class="mono" data-terminal-code><code>{
   "status": "completed",
   "plan": {"nodes": [{"id": 1, "type": "decision"}, {"id": 2, "type": "result"}]},
   "trajectory": [
@@ -236,7 +283,7 @@
         <div class="section-index" aria-hidden="true">05</div>
         <div class="section-heading reveal">
           <p class="eyebrow">Evidence</p>
-          <h2 id="evidence-title">The first release cleared its eval gate.</h2>
+          <h2 id="evidence-title">The package ships through an eval gate.</h2>
           <p>
             Latest confirmation run, June 11, 2026. These numbers describe the suites run, not
             universal agent behavior.
@@ -253,25 +300,25 @@
             </thead>
             <tbody>
               <tr>
-                <td>harness-mechanics</td>
-                <td><strong>32/32</strong> full-pass</td>
+                <td>harness-mechanics (32 tasks · 3 trials)</td>
+                <td class="mono"><strong>32/32</strong> full-pass</td>
                 <td>100%</td>
               </tr>
               <tr>
-                <td>node-capability-openrouter</td>
-                <td><strong>7/7</strong> full-pass</td>
+                <td>node-capability-openrouter (7 tasks · 3 trials)</td>
+                <td class="mono"><strong>7/7</strong> full-pass</td>
                 <td>100%</td>
               </tr>
               <tr>
-                <td>glassrail-openrouter</td>
-                <td>
+                <td>glassrail-openrouter (23 tasks · 3 trials)</td>
+                <td class="mono">
                   <strong>20/23</strong> full-pass · <span class="glitchable">0 all-fail</span>
                 </td>
                 <td>&gt;= 80%, 0 all-fail</td>
               </tr>
               <tr>
-                <td>glassrail-heldout</td>
-                <td><strong>10/12</strong> full-pass · 11/12 pass@k</td>
+                <td>glassrail-heldout (12 tasks · 3 trials)</td>
+                <td class="mono"><strong>10/12</strong> full-pass · 1 all-fail · 11/12 pass@k</td>
                 <td>published beside main suites</td>
               </tr>
             </tbody>
@@ -334,9 +381,9 @@
           <p class="eyebrow">Status honesty</p>
           <h2 id="limits-title">Early, 0.x, intentionally unfinished.</h2>
           <p>
-            Glassrail is installable and eval-gated, but broad hardening continues. REST bearer
-            auth, deeper web-fetch hardening, comparative baselines, parallel execution, and
-            file-editing workflows remain on the roadmap.
+            Glassrail is installable and eval-gated. REST bearer auth and web-fetch guardrails are
+            in place; comparative baseline evidence, parallel execution, file-editing workflows, and
+            richer assistant surfaces remain on the roadmap.
           </p>
           <a class="text-link" href="https://andrew-ellis-engineering.github.io/glassrail/roadmap/">
             Read the roadmap

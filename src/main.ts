@@ -9,10 +9,18 @@ import { initGlitch } from "./lib/glitch";
 import { initNav } from "./lib/nav";
 import { initReveal } from "./lib/reveal";
 import { initSpecular } from "./lib/specular";
+import { initTerminalReplay } from "./lib/terminal";
 
 initNav();
 initReveal();
 initSpecular();
 initGlitch();
 initCopyButtons();
-initCrystallizer();
+initTerminalReplay();
+
+const startHero = () => initCrystallizer();
+if ("requestIdleCallback" in window) {
+  window.requestIdleCallback(startHero, { timeout: 1200 });
+} else {
+  globalThis.setTimeout(startHero, 80);
+}

@@ -34,28 +34,28 @@ The "rainbow at 5–10%" is enforced, not vibes:
 ```css
 :root {
   /* field */
-  --paper:      oklch(98.5% 0.004 240);   /* page */
-  --paper-2:    oklch(97.2% 0.006 235);   /* alternate section field */
-  --ink:        oklch(21% 0.016 250);     /* primary text */
-  --ink-2:      oklch(45% 0.020 245);     /* secondary text */
-  --ink-3:      oklch(62% 0.014 240);     /* tertiary, captions */
-  --line:       oklch(90% 0.008 235);     /* hairlines */
+  --paper: oklch(98.5% 0.004 240); /* page */
+  --paper-2: oklch(97.2% 0.006 235); /* alternate section field */
+  --ink: oklch(21% 0.016 250); /* primary text */
+  --ink-2: oklch(45% 0.02 245); /* secondary text */
+  --ink-3: oklch(62% 0.014 240); /* tertiary, captions */
+  --line: oklch(90% 0.008 235); /* hairlines */
 
   /* iris spectrum (Siri-adjacent), used at low alpha */
-  --iris-cyan:   oklch(82% 0.10 215);
-  --iris-azure:  oklch(75% 0.11 255);
+  --iris-cyan: oklch(82% 0.1 215);
+  --iris-azure: oklch(75% 0.11 255);
   --iris-violet: oklch(72% 0.11 295);
-  --iris-pink:   oklch(78% 0.10 340);
-  --iris-amber:  oklch(85% 0.09 80);
-  --iris-mint:   oklch(86% 0.09 165);
+  --iris-pink: oklch(78% 0.1 340);
+  --iris-amber: oklch(85% 0.09 80);
+  --iris-mint: oklch(86% 0.09 165);
 
   /* engine node-status semantics (mirror NodeStatus) */
-  --st-pending:   oklch(62% 0.014 240 / 0.35);
-  --st-running:   var(--iris-azure);
-  --st-completed: oklch(72% 0.10 175);
-  --st-skipped:   oklch(62% 0.010 240 / 0.30);
-  --st-failed:    oklch(66% 0.13 25);      /* sparing */
-  --st-flagged:   var(--iris-amber);
+  --st-pending: oklch(62% 0.014 240 / 0.35);
+  --st-running: var(--iris-azure);
+  --st-completed: oklch(72% 0.1 175);
+  --st-skipped: oklch(62% 0.01 240 / 0.3);
+  --st-failed: oklch(66% 0.13 25); /* sparing */
+  --st-flagged: var(--iris-amber);
 }
 ```
 
@@ -78,11 +78,17 @@ The "rainbow at 5–10%" is enforced, not vibes:
 
 ```css
 :root {
-  --s1: 4px; --s2: 8px; --s3: 16px; --s4: 24px; --s5: 40px;
-  --s6: 64px; --s7: clamp(96px, 12vw, 160px);    /* section rhythm */
-  --r-pane: 20px; --r-chip: 10px; --r-pill: 999px;
-  --shadow-pane: 0 1px 2px oklch(30% 0.02 250 / 0.05),
-                 0 16px 40px -16px oklch(30% 0.03 250 / 0.14);
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 16px;
+  --s4: 24px;
+  --s5: 40px;
+  --s6: 64px;
+  --s7: clamp(96px, 12vw, 160px); /* section rhythm */
+  --r-pane: 20px;
+  --r-chip: 10px;
+  --r-pill: 999px;
+  --shadow-pane: 0 1px 2px oklch(30% 0.02 250 / 0.05), 0 16px 40px -16px oklch(30% 0.03 250 / 0.14);
 }
 ```
 
@@ -96,18 +102,20 @@ Section spacing varies deliberately: hero breathes at `--s7`, dense sections
 ```css
 .pane {
   position: relative;
-  background: linear-gradient(180deg,
-    oklch(100% 0 0 / 0.72), oklch(98% 0.005 240 / 0.44));
+  background: linear-gradient(180deg, oklch(100% 0 0 / 0.72), oklch(98% 0.005 240 / 0.44));
   -webkit-backdrop-filter: blur(18px) saturate(140%);
   backdrop-filter: blur(18px) saturate(140%);
   border: 1px solid oklch(100% 0 0 / 0.65);
   border-radius: var(--r-pane);
-  box-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.85),
-              inset 0 -1px 0 oklch(75% 0.03 250 / 0.18),
-              var(--shadow-pane);
+  box-shadow:
+    inset 0 1px 0 oklch(100% 0 0 / 0.85),
+    inset 0 -1px 0 oklch(75% 0.03 250 / 0.18),
+    var(--shadow-pane);
 }
 @supports not (backdrop-filter: blur(1px)) {
-  .pane { background: oklch(99% 0.004 240 / 0.92); }
+  .pane {
+    background: oklch(99% 0.004 240 / 0.92);
+  }
 }
 ```
 
@@ -115,15 +123,28 @@ Section spacing varies deliberately: hero breathes at `--s7`, dense sections
 
 ```css
 .pane.iris::after {
-  content: ""; position: absolute; inset: 0; padding: 1px;
-  border-radius: inherit; pointer-events: none;
-  background: conic-gradient(from var(--rim-angle, 200deg),
-    oklch(82% 0.12 215 / .55), oklch(72% 0.13 295 / .50),
-    oklch(78% 0.12 340 / .45), oklch(85% 0.10 80 / .40),
-    oklch(86% 0.10 165 / .45), oklch(82% 0.12 215 / .55));
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor; mask-composite: exclude;
-  opacity: 0; transition: opacity .28s var(--ease-glass);
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--rim-angle, 200deg),
+    oklch(82% 0.12 215 / 0.55),
+    oklch(72% 0.13 295 / 0.5),
+    oklch(78% 0.12 340 / 0.45),
+    oklch(85% 0.1 80 / 0.4),
+    oklch(86% 0.1 165 / 0.45),
+    oklch(82% 0.12 215 / 0.55)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.28s var(--ease-glass);
 }
 /* opacity targets: hover .45 · focus-visible .8 · meaning moments .6 */
 ```
@@ -149,9 +170,12 @@ field). Both static under reduced motion.
 
 ```css
 :root {
-  --ease-glass: cubic-bezier(0.16, 1, 0.3, 1);   /* ease-out-expo family */
+  --ease-glass: cubic-bezier(0.16, 1, 0.3, 1); /* ease-out-expo family */
   --ease-settle: cubic-bezier(0.22, 1, 0.36, 1); /* quint */
-  --d-micro: 180ms; --d-state: 320ms; --d-materialize: 640ms; --d-scene: 1100ms;
+  --d-micro: 180ms;
+  --d-state: 320ms;
+  --d-materialize: 640ms;
+  --d-scene: 1100ms;
 }
 ```
 
@@ -183,17 +207,21 @@ and the animation is the liquid layer leaving. Four phases, GSAP-driven
 2. **Breach (at scale 1.0).** The meniscus: a paired rim (soft dark trough,
    5px stroke at blur 3, outside; bright film crest, 2px stroke at blur 1,
    inside) inflates from the node edge to about +6px while both strokes thin
-   and fade. Four corner lobes cling ~200ms longer than the rim, then detach
-   outward ~4px shrinking to nothing (droplets). One rounded-rect ripple ring
-   expands and fades on the page surface.
-3. **Drain (~40%).** The liquid layer is masked by a vertical luminance
-   gradient whose front travels top to bottom (front softness ≈ 12% of node
-   height): crisp content is revealed *behind* the front. A 2px film-edge
-   highlight tracks the front inside the node clip. Displacement, blur, and
-   milk ease to zero in lockstep with the front. Near the end a single bead
-   forms at the bottom rim and sheds. The border and text sharpening behind
-   the front is the payoff of the whole effect; never shorten this phase
-   below ~35% of the cycle.
+   and fade. Four corner lobes form on the rim and hold through the drain
+   (see phase 3). One rounded-rect ripple ring expands and fades on the page
+   surface.
+3. **Drain (~40%), middle out.** The slab's center breaks the surface first:
+   the liquid layer is masked by a radial luminance gradient stretched to an
+   ellipse matched to the node's proportions (semi-axes ≈ half-width/height
+   - 10px; soft front ≈ ±0.07 in gradient units). Crisp content is revealed
+     _inside_ the expanding front; a 2px film ring rides the front outward,
+     clipped to the pane. Displacement, blur, and milk ease to zero in
+     lockstep. The film clears the edge midpoints near the end and the corners
+     last of all — the corner lobes swell as the retreating film is pushed
+     into them, then detach outward ~4px shrinking to nothing (droplets), and
+     a single bead forms at the bottom rim and sheds. The center-out
+     sharpening of border and text is the payoff of the whole effect; never
+     shorten this phase below ~35% of the cycle.
 4. **Settle.** A 240ms specular sweep and one iris-rim flash at 60% opacity
    decaying to rest. The filter is detached and the liquid layer removed
    from the DOM.

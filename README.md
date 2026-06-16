@@ -16,9 +16,13 @@ quickstart, and known limits.
 
 ```bash
 npm install
-npm run dev
-npm run build
+npm run dev      # local dev server
+npm run format   # prettier check (CI runs this)
+npm run build    # tsc --noEmit + vite build
 ```
+
+Fonts are self-hosted latin subsets in `public/fonts/` (Switzer variable,
+Commit Mono 400/700), declared inline in `index.html`.
 
 The original planning documents remain in this repo:
 
@@ -27,6 +31,8 @@ The original planning documents remain in this repo:
   recipes, motion rules, and accessibility floors.
 - `docs/product-website-ui.md` defines the one-page site architecture and
   Crystallizer hero animation.
+- `docs/first-draft-review.md` is the implemented review of the first build;
+  its acceptance criteria are the maintenance bar for changes.
 
 Keep the site honest to the runtime: real vocabulary, dated eval evidence,
 sequential node execution until parallel execution ships, and no unsupported

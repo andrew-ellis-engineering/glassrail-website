@@ -3,18 +3,20 @@
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
   background: var(--paper);
 }
 
 body {
+  overflow-x: clip;
   min-width: 320px;
   margin: 0;
   color: var(--ink);
   background: var(--paper);
   font-family:
     Switzer,
-    Inter,
+    "Switzer Fallback",
     ui-sans-serif,
     system-ui,
     -apple-system,
@@ -26,7 +28,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-body::selection {
+::selection {
   color: var(--ink);
   background: oklch(82% 0.1 215 / 0.24);
 }
@@ -68,7 +70,7 @@ h3 {
 }
 
 h1 {
-  max-width: 10.5ch;
+  max-width: 11.5ch;
   margin-bottom: var(--s4);
   font-size: var(--t-display);
   font-weight: 620;
@@ -158,8 +160,8 @@ strong {
   z-index: -2;
   width: 42vw;
   height: 42vw;
-  min-width: 420px;
-  min-height: 420px;
+  min-width: min(420px, 120vw);
+  min-height: min(420px, 120vw);
   border-radius: 50%;
   filter: blur(120px);
   opacity: 0.5;
@@ -167,9 +169,9 @@ strong {
 }
 
 .field-blob-a {
-  top: 8vh;
-  right: -12vw;
-  background: oklch(82% 0.1 215 / 0.08);
+  top: 6vh;
+  right: 2vw;
+  background: oklch(82% 0.1 215 / 0.1);
   animation: float-a 42s ease-in-out infinite;
 }
 
@@ -199,6 +201,9 @@ strong {
     scroll-behavior: auto !important;
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+  }
+
+  .aura {
+    display: none;
   }
 }
