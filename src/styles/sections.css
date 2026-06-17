@@ -344,9 +344,9 @@
   padding: var(--s4);
 }
 
-/* Demos sit on the card's floor; copy stays top-aligned in tall cells. */
+/* Demos follow the copy; grid row height should not create blank wells. */
 .tenet > :last-child {
-  margin-top: auto;
+  margin-top: var(--s4);
 }
 
 .tenet.span-wide {
@@ -354,7 +354,7 @@
 }
 
 .tenet.span-tall {
-  grid-row: span 2;
+  grid-row: span 1;
 }
 
 .code-slice {
@@ -451,17 +451,18 @@
 .cycle-demo i {
   position: absolute;
   inset: 18px 32px;
-  border: 1px dashed oklch(85% 0.09 80 / 0.62);
+  border: 1.5px dashed oklch(68% 0.14 76 / 0.82);
   border-left: 0;
   border-radius: 50%;
+  box-shadow: 0 0 18px oklch(72% 0.12 76 / 0.12);
   animation: reject-cycle 1.8s var(--ease-settle) both;
 }
 
 .tier-stack {
   position: relative;
   display: grid;
-  gap: var(--s3);
-  margin: var(--s4) 0 0;
+  gap: 10px;
+  margin: var(--s3) 0 0;
   padding: 0;
   font-size: var(--t-micro);
   list-style: none;
@@ -481,7 +482,7 @@
 }
 
 .tier-stack li {
-  padding: 12px 14px;
+  padding: 10px 14px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: oklch(100% 0 0 / 0.35);
@@ -506,12 +507,21 @@
 
 .bar-pair {
   display: grid;
-  gap: var(--s3);
+  gap: 12px;
   margin-top: var(--s4);
 }
 
 .bar-pair span {
-  position: relative;
+  display: grid;
+  grid-template-columns: 13ch minmax(0, 1fr);
+  gap: var(--s3);
+  align-items: center;
+  width: 100%;
+}
+
+.bar-pair span::before {
+  content: "";
+  grid-column: 2;
   width: var(--w);
   height: 12px;
   border-radius: var(--r-pill);
@@ -522,9 +532,8 @@
 
 .bar-pair span::after {
   content: attr(data-label);
-  position: absolute;
-  left: 0;
-  bottom: calc(100% + 3px);
+  grid-column: 1;
+  grid-row: 1;
   color: var(--ink-3);
   font-family: "Commit Mono", "SFMono-Regular", monospace;
   font-size: 10px;
@@ -737,6 +746,16 @@
     padding: var(--s3);
   }
 
+  .bar-pair span {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .bar-pair span::before,
+  .bar-pair span::after {
+    grid-column: 1;
+  }
+
   th,
   td {
     padding: 14px 8px;
@@ -773,7 +792,7 @@
     transform: scale(1) rotate(0deg);
   }
   100% {
-    opacity: 0.32;
+    opacity: 0.72;
     transform: scale(0.92) rotate(8deg);
   }
 }
@@ -783,14 +802,14 @@
     transform: translateY(4px);
   }
   45% {
-    transform: translateY(104px);
+    transform: translateY(92px);
   }
   62% {
     opacity: 0.34;
-    transform: translateY(158px);
+    transform: translateY(136px);
   }
   100% {
-    transform: translateY(214px);
+    transform: translateY(178px);
   }
 }
 
@@ -814,7 +833,7 @@
   .context-demo .lit,
   .cycle-demo i,
   .branch-demo .taken,
-  .bar-pair span {
+  .bar-pair span::before {
     animation: none;
   }
 }
